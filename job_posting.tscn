@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://r4ofai6pdto5"]
+
+[ext_resource type="Script" path="res://job_posting.gd" id="1_fgtyq"]
+
+[node name="JobPosting" type="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+mouse_default_cursor_shape = 2
+theme_override_constants/h_separation = 10
+columns = 3
+script = ExtResource("1_fgtyq")
+
+[node name="JobName" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+text = "TEST"
+
+[node name="JobRequest" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+text = "Test"
+
+[node name="JobPayout" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+text = "Test"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
