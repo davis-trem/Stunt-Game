@@ -10,3 +10,5 @@ script = ExtResource("1_30vvc")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_65ne7")
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]

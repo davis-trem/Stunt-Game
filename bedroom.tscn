@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsy4qpe84qra6"]
+[gd_scene load_steps=10 format=3 uid="uid://dsy4qpe84qra6"]
 
 [ext_resource type="Texture2D" uid="uid://cx0bse1msnw7i" path="res://backgrounds/bedroom.png" id="1_k0rhj"]
+[ext_resource type="Script" path="res://bedroom.gd" id="1_kfjph"]
 [ext_resource type="Texture2D" uid="uid://bnvbncn50e7bu" path="res://items/skeleton.png" id="2_gtmk3"]
 [ext_resource type="Script" path="res://scripts/JobBoard.gd" id="3_ccm43"]
 [ext_resource type="Texture2D" uid="uid://cy2yqy6m3r4en" path="res://items/JobList.png" id="3_cyar6"]
@@ -14,6 +15,7 @@ size = Vector2(61, 131)
 size = Vector2(89, 152)
 
 [node name="Bedroom" type="Node"]
+script = ExtResource("1_kfjph")
 
 [node name="BedroomBG" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -82,5 +84,20 @@ offset_top = -0.0930023
 offset_right = 336.178
 offset_bottom = 220.907
 script = ExtResource("4_6es82")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MoneyAmount" type="Label" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.021
+anchor_top = 0.04
+anchor_right = 0.021
+anchor_bottom = 0.04
+offset_left = -0.120001
+offset_top = -0.200001
+offset_right = 141.88
+offset_bottom = 33.8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Money: $0"
 
 [connection signal="input_event" from="JobBoard" to="JobBoard" method="_on_input_event"]
