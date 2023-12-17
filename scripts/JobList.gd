@@ -30,6 +30,7 @@ func _ready():
 		instance.get_node("JobRequest").text = job["job_requirements"]
 		instance.get_node("JobPayout").text = str(job["job_payout"])	
 		instance.name = "jobposting_" + str(job["id"])
+		instance.job_id = job["id"] 
 		add_child(instance)
 
 
