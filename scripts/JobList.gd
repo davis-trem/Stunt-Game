@@ -5,7 +5,7 @@ extends GridContainer
 func _ready():
 	for i in GameState.job_list.size():
 		var job = GameState.job_list[i]
-		var scene = load("res://job_posting.tscn")
+		var scene = load("res://scenes/job_posting.tscn")
 		var instance = scene.instantiate()
 		instance.get_node("JobName").text = job["job_title"]
 		instance.get_node("JobRequest").text = job["job_requirements"]

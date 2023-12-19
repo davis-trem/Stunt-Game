@@ -23,5 +23,5 @@ func _on_texture_rect_gui_input(event):
 		print(GameState.round)
 		GameState.proceedToNextRound()
 		print(GameState.round)
-		var scene = preload("res://bedroom.tscn").instantiate()
+		var scene = preload("res://scenes/bedroom.tscn").instantiate()
 		GameState.scene_swapper(scene)

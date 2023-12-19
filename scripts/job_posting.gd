@@ -14,7 +14,7 @@ func _process(delta):
 
 func _gui_input(event):
 	if  event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var scene = preload("res://Job.tscn").instantiate()
+		var scene = preload("res://scenes/Job.tscn").instantiate()
 		scene.job_idx = job_idx
 		GameState.scene_swapper(scene)
 		

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Stunt Game"
-run/main_scene="res://bedroom.tscn"
+run/main_scene="res://scenes/bedroom.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
