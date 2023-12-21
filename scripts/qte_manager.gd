@@ -65,7 +65,7 @@ func _process(delta):
 	
 	match qte_type:
 		TYPE.MASHING:
-			$VBoxContainer/ProgressBar.value -= 0.7
+			$VBoxContainer/ProgressBar.value -= 42 * delta
 
 
 func _input(event):
@@ -134,10 +134,10 @@ func _handle_event_ended_dialog_retry_button_pressed():
 
 
 func _handle_event_ended_dialog_quit_button_pressed():
-	GameState.money += GameState.job_list[job_idx]["job_payout"]
-	print(GameState.round)
+	GameState.player_stats.money += GameState.job_list[job_idx]["job_payout"]
+	print(GameState.player_stats.round)
 	GameState.proceedToNextRound()
-	print(GameState.round)
+	print(GameState.player_stats.round)
 	var scene = preload("res://scenes/bedroom.tscn").instantiate()
 	GameState.scene_swapper(scene)
 
