@@ -100,9 +100,11 @@ func _simon_says_input(event: InputEvent):
 		if event.is_action_pressed(simon_says_list[0]):
 			simon_says_list.pop_front()
 			if simon_says_list.is_empty():
+				timer.stop()
 				event_finished.emit(false)
 				event_ended_dialog.show_dialog(false)
 		else:
+			timer.stop()
 			event_finished.emit(true)
 			event_ended_dialog.show_dialog(true)
 
