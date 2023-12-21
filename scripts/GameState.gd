@@ -1,5 +1,7 @@
 extends Node
 
+const QTEManager = preload('res://scripts/qte_manager.gd')
+
 var money = 100
 var round = 1
 var health = {
@@ -12,24 +14,27 @@ var health = {
 var current_scene
 
 var job_list = [
-		{
-			"id": 1,
-			"job_title": "Jump over a shark",
-			"job_requirements": "Clear over a shark with a motorcycle",
-			"job_payout": 500,
-		},
-		{
-			"id": 2,
-			"job_title": "Building Dive",
-			"job_requirements": "Dive from a 500ft building",
-			"job_payout": 1500,
-		},
-		{
-			"id": 3,
-			"job_title": "Fight Scene",
-			"job_requirements": "Fight 10 mean",
-			"job_payout": 750,
-		},
+	{
+		"id": 1,
+		"job_title": "Jump over a shark",
+		"job_requirements": "Clear over a shark with a motorcycle",
+		"job_payout": 500,
+		"qte_type": QTEManager.TYPE.MASHING,
+	},
+	{
+		"id": 2,
+		"job_title": "Building Dive",
+		"job_requirements": "Dive from a 500ft building",
+		"job_payout": 1500,
+		"qte_type": QTEManager.TYPE.MASHING,
+	},
+	{
+		"id": 3,
+		"job_title": "Fight Scene",
+		"job_requirements": "Fight 10 mean",
+		"job_payout": 750,
+		"qte_type": QTEManager.TYPE.SIMON_SAYS,
+	},
 ]
 func proceedToNextRound():
 	randomizeLifeEvents()

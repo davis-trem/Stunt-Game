@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://b238fjfmihkua"]
+
+[ext_resource type="Script" path="res://scripts/qte_manager.gd" id="1_7u7dj"]
+[ext_resource type="PackedScene" uid="uid://b0felsjplyyn3" path="res://scenes/event_ended_dialog.tscn" id="2_6w5k4"]
+[ext_resource type="PackedScene" uid="uid://e16tod262s3h" path="res://scenes/qte_button.tscn" id="2_lmjj7"]
+
+[node name="QteMashing" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7u7dj")
+
+[node name="TargetRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+color = Color(0, 0.529412, 0.270588, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+show_percentage = false
+
+[node name="QTEButton" parent="VBoxContainer" instance=ExtResource("2_lmjj7")]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 2
+offset_right = 720.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "00"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="EventEndedDialog" parent="." instance=ExtResource("2_6w5k4")]
+visible = false
+layout_mode = 1
