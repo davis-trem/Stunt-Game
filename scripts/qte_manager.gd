@@ -23,6 +23,7 @@ signal event_finished(has_failed: bool)
 @onready var timer_label = $TimerLabel
 @onready var event_ended_dialog = $EventEndedDialog
 
+var target_mashing_value
 var simon_says_list = []
 var job_idx
 
@@ -84,6 +85,8 @@ func _mash_button(event: InputEvent):
 
 
 func _start_mashing_event():
+	target_mashing_value = 85
+	($TargetRect as ColorRect).custom_minimum_size.x = (100 - target_mashing_value) * 8
 	$VBoxContainer/ProgressBar.value = 0
 	timer.wait_time = wait_times[TYPE.MASHING]
 	timer.start()
@@ -141,8 +144,8 @@ func _handle_timer_timeout():
 	timer.stop()
 	match qte_type:
 		TYPE.MASHING:
-			event_finished.emit($VBoxContainer/ProgressBar.value < 95)
-			event_ended_dialog.show_dialog($VBoxContainer/ProgressBar.value < 95)
+			event_finished.emit($VBoxContainer/ProgressBar.value < target_mashing_value)
+			event_ended_dialog.show_dialog($VBoxContainer/ProgressBar.value < target_mashing_value)
 		TYPE.SIMON_SAYS:
 			event_finished.emit(true)
 			event_ended_dialog.show_dialog(true)
