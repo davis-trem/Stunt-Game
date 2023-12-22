@@ -1,6 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7yyhgci03vo0"]
+[gd_scene load_steps=2 format=3 uid="uid://dm5pl0s15tlaa"]
 
-[ext_resource type="Script" path="res://scripts/Job.gd" id="1_stkav"]
+[sub_resource type="GDScript" id="GDScript_wrqef"]
+script/source = "extends Node2D
+
+var job_idx
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	generate_job(job_idx)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func generate_job(job_idx):
+	#Add in function that searches for background and job settings based on ID
+	print(job_idx)
+	pass
+
+#TEMP FUNCTION TO TEST PROCEEDING ROUNDS
+func _on_texture_rect_gui_input(event):
+	if  event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		GameState.player_stats.money += GameState.job_list[job_idx][\"job_payout\"]
+		print(GameState.player_stats.round)
+		GameState.proceedToNextRound()
+		print(GameState.player_stats.round)
+		var scene = preload(\"res://scenes/bedroom.tscn\").instantiate()
+		GameState.scene_swapper(scene)
+"
 
 [node name="Job" type="Node2D"]
-script = ExtResource("1_stkav")
+script = SubResource("GDScript_wrqef")
