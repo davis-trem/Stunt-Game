@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7kgnularixp"]
+
+[ext_resource type="Texture2D" uid="uid://cgoykytjxii5m" path="res://characters/player.png" id="1_882ww"]
+
+[sub_resource type="Animation" id="Animation_a4gv6"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -100), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_70j6q"]
+resource_name = "run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -100), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qqs0"]
+_data = {
+"RESET": SubResource("Animation_a4gv6"),
+"run": SubResource("Animation_70j6q")
+}
+
+[node name="Player" type="Sprite2D"]
+position = Vector2(0, -80.6822)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_882ww")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0qqs0")
+}

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b238fjfmihkua"]
+[gd_scene load_steps=5 format=3 uid="uid://b238fjfmihkua"]
 
 [ext_resource type="Script" path="res://scripts/qte_manager.gd" id="1_7u7dj"]
 [ext_resource type="PackedScene" uid="uid://b0felsjplyyn3" path="res://scenes/event_ended_dialog.tscn" id="2_6w5k4"]
 [ext_resource type="PackedScene" uid="uid://e16tod262s3h" path="res://scenes/qte_button.tscn" id="2_lmjj7"]
+[ext_resource type="PackedScene" uid="uid://vxxia41yea76" path="res://scenes/chase.tscn" id="4_lyf1h"]
 
 [node name="QteMashing" type="Control"]
 layout_mode = 3
@@ -13,11 +14,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7u7dj")
 
+[node name="Chase" parent="." instance=ExtResource("4_lyf1h")]
+
 [node name="TargetRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 50.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
 color = Color(0, 0.529412, 0.270588, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
