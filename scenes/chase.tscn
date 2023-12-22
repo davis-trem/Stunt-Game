@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://vxxia41yea76"]
+
+[ext_resource type="Script" path="res://Chase.gd" id="1_ebnb6"]
+[ext_resource type="PackedScene" uid="uid://cj2n2xn8n8amd" path="res://scenes/ParallaxForest.tscn" id="2_mtccu"]
+[ext_resource type="PackedScene" uid="uid://b7kgnularixp" path="res://scenes/player.tscn" id="3_uiird"]
+
+[node name="Chase" type="Node2D"]
+script = ExtResource("1_ebnb6")
+
+[node name="ParallaxForest" parent="." instance=ExtResource("2_mtccu")]
+
+[node name="Player" parent="." instance=ExtResource("3_uiird")]
+position = Vector2(522, 378)

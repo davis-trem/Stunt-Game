@@ -100,6 +100,8 @@ func _start_mashing_event():
 	($TargetRect as ColorRect).position.x = target_mashing_pos
 	
 	$VBoxContainer/ProgressBar.value = 0
+	var scene = preload("res://scenes/chase.tscn").instantiate()
+	get_tree().root.add_child(scene)
 	timer.wait_time = wait_times[TYPE.MASHING]
 	timer.start()
 

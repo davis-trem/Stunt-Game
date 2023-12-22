@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbsgeobu3v32b"]
+
+[ext_resource type="Texture2D" uid="uid://cx0bse1msnw7i" path="res://backgrounds/bedroom.png" id="1_k0rhj"]
+[ext_resource type="Script" path="res://bedroom.gd" id="1_kfjph"]
+[ext_resource type="Texture2D" uid="uid://bnvbncn50e7bu" path="res://items/skeleton.png" id="2_gtmk3"]
+[ext_resource type="Script" path="res://scripts/JobBoard.gd" id="3_ccm43"]
+[ext_resource type="Texture2D" uid="uid://cy2yqy6m3r4en" path="res://items/JobList.png" id="3_cyar6"]
+[ext_resource type="Script" path="res://scripts/JobCollision.gd" id="3_yskno"]
+[ext_resource type="Script" path="res://scripts/JobList.gd" id="4_6es82"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y453k"]
+size = Vector2(61, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi567"]
+size = Vector2(89, 152)
+
+[node name="Bedroom" type="Node"]
+script = ExtResource("1_kfjph")
+
+[node name="BedroomBG" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_k0rhj")
+
+[node name="CheckHealth" type="Area2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CheckHealth"]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 156.0
+offset_top = 144.0
+offset_right = 214.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gtmk3")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHealth"]
+position = Vector2(185.5, 210.5)
+shape = SubResource("RectangleShape2D_y453k")
+
+[node name="JobBoard" type="Area2D" parent="."]
+disable_mode = 2
+script = ExtResource("3_ccm43")
+
+[node name="JobCollision" type="CollisionShape2D" parent="JobBoard"]
+position = Vector2(518.5, 225)
+shape = SubResource("RectangleShape2D_xi567")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+script = ExtResource("3_yskno")
+
+[node name="JobListUI" type="Node" parent="."]
+
+[node name="JobListContainer" type="TextureRect" parent="JobListUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -251.0
+offset_right = 206.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cyar6")
+
+[node name="JobList" type="GridContainer" parent="JobListUI/JobListContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.094
+anchor_top = 0.497
+anchor_right = 0.094
+anchor_bottom = 0.497
+offset_left = 0.177998
+offset_top = -0.0930023
+offset_right = 336.178
+offset_bottom = 220.907
+script = ExtResource("4_6es82")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MoneyAmount" type="Label" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.021
+anchor_top = 0.04
+anchor_right = 0.021
+anchor_bottom = 0.04
+offset_left = -0.120001
+offset_top = -0.200001
+offset_right = 141.88
+offset_bottom = 33.8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Money: $0"
+
+[connection signal="input_event" from="JobBoard" to="JobBoard" method="_on_input_event"]
