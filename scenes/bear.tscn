@@ -1,20 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cik241i7htjua"]
+[gd_scene load_steps=5 format=3 uid="uid://cik241i7htjua"]
 
 [ext_resource type="Texture2D" uid="uid://b1ym7e0ndtpj3" path="res://characters/bear.png" id="1_8188a"]
-
-[sub_resource type="GDScript" id="GDScript_s40ds"]
-script/source = "extends Sprite2D
-
-@onready var bear_animation = $Bear/AnimationPlayer
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	bear_animation.play(\"chase\")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="Animation" id="Animation_8g0qy"]
 length = 0.001
@@ -80,7 +66,6 @@ _data = {
 [node name="Bear" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_8188a")
-script = SubResource("GDScript_s40ds")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
