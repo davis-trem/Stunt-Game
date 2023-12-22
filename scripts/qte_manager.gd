@@ -23,7 +23,6 @@ signal event_finished(has_failed: bool)
 @onready var timer_label = $TimerLabel
 @onready var event_ended_dialog = $EventEndedDialog
 
-var target_mashing_value
 var simon_says_list = []
 var job_idx
 
@@ -48,6 +47,9 @@ func _ready():
 	event_ended_dialog.quit_button_pressed.connect(_handle_event_ended_dialog_quit_button_pressed)
 	
 	timer.timeout.connect(_handle_timer_timeout)
+	
+	# wait for all scene sizes to be set
+	await get_tree().create_timer(0.001).timeout
 	
 	match qte_type:
 		TYPE.MASHING:
@@ -85,8 +87,18 @@ func _mash_button(event: InputEvent):
 
 
 func _start_mashing_event():
-	target_mashing_value = 85
-	($TargetRect as ColorRect).custom_minimum_size.x = (100 - target_mashing_value) * 8
+	var target_mashing_size = randi_range(
+		$VBoxContainer/ProgressBar.size.x * 0.11,
+		$VBoxContainer/ProgressBar.size.x * 0.21,
+	)
+	($TargetRect as ColorRect).custom_minimum_size.x = target_mashing_size
+	
+	var target_mashing_pos = randf_range(
+		($VBoxContainer/ProgressBar.size.x / 2) - (target_mashing_size / 2),
+		$VBoxContainer/ProgressBar.size.x - (target_mashing_size / 2),
+	)
+	($TargetRect as ColorRect).position.x = target_mashing_pos
+	
 	$VBoxContainer/ProgressBar.value = 0
 	timer.wait_time = wait_times[TYPE.MASHING]
 	timer.start()
@@ -146,8 +158,12 @@ func _handle_timer_timeout():
 	timer.stop()
 	match qte_type:
 		TYPE.MASHING:
-			event_finished.emit($VBoxContainer/ProgressBar.value < target_mashing_value)
-			event_ended_dialog.show_dialog($VBoxContainer/ProgressBar.value < target_mashing_value)
+			var value = $VBoxContainer/ProgressBar.size.x * ($VBoxContainer/ProgressBar.value / 100)
+			var target_pos = ($TargetRect as ColorRect).position.x
+			var target_size = ($TargetRect as ColorRect).size.x
+			var is_in_range = target_pos <= value && value <= (target_pos + target_size)
+			event_finished.emit(not is_in_range)
+			event_ended_dialog.show_dialog(not is_in_range)
 		TYPE.SIMON_SAYS:
 			event_finished.emit(true)
 			event_ended_dialog.show_dialog(true)
