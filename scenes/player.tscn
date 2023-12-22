@@ -44,7 +44,7 @@ position = Vector2(0, -80.6822)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_882ww")
 
-[node name="PlayerAnimation" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_0qqs0")
 }
