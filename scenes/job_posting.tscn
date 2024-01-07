@@ -6,18 +6,11 @@
 custom_minimum_size = Vector2(0, 50)
 mouse_default_cursor_shape = 2
 theme_override_constants/h_separation = 10
-columns = 3
+columns = 2
 script = ExtResource("1_fgtyq")
 
-[node name="JobName" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-text = "TEST"
-
 [node name="JobRequest" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -26,6 +19,7 @@ text = "Test"
 [node name="JobPayout" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 3
 mouse_filter = 2
 text = "Test"

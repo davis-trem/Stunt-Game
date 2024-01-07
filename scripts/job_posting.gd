@@ -9,17 +9,40 @@ const QTE_TYPE_TO_SCENE = {
 	QTEManager.TYPE.SIMON_SAYS: QTE_SIMON_SAYS,
 }
 
+@onready var job_request: RichTextLabel = $JobRequest
+
 var job_idx
 var qte_type: QTEManager.TYPE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	job_request.add_theme_color_override('default_color', _determine_text_color())
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _determine_text_color() -> Color:
+	var caution = false
+	for required_skill in GameState.job_list[job_idx]['required_skills']:
+		var skill_gap = _get_skill_gap(required_skill['type'], required_skill['value'])
+		if skill_gap >= 3:
+			return Color.RED 
+		elif  skill_gap >= 1:
+			caution = true
+	return Color.YELLOW if caution else Color.WHITE
+
+
+func _get_skill_gap(type: GameState.SKILL_TYPE, value: int) -> int:
+	match type:
+		GameState.SKILL_TYPE.ACROBATICS:
+			return value - GameState.player_stats.acrobatics
+		GameState.SKILL_TYPE.ENDURANCE:
+			return value - GameState.player_stats.endurance
+		GameState.SKILL_TYPE.COMBAT:
+			return value - GameState.player_stats.combat
+		GameState.SKILL_TYPE.ANIMAL_HANDLING:
+			return value - GameState.player_stats.animal_handling
+		GameState.SKILL_TYPE.DRIVING:
+			return value - GameState.player_stats.driving
+	return 0
 
 
 func _gui_input(event):

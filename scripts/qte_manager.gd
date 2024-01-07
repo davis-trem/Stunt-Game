@@ -146,10 +146,8 @@ func _handle_event_ended_dialog_retry_button_pressed():
 
 
 func _handle_event_ended_dialog_quit_button_pressed():
-	GameState.player_stats.money += GameState.job_list[job_idx]["job_payout"]
-	print(GameState.player_stats.round)
+	GameState.player_stats.money += GameState.job_list[job_idx]["payout"]
 	GameState.proceedToNextRound()
-	print(GameState.player_stats.round)
 	var scene = preload("res://scenes/bedroom.tscn").instantiate()
 	GameState.scene_swapper(scene)
 

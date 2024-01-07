@@ -72,17 +72,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_mxkxy")
 
-[node name="JobList" type="GridContainer" parent="JobListUI/JobListContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="JobListUI/JobListContainer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.094
-anchor_top = 0.497
-anchor_right = 0.094
-anchor_bottom = 0.497
-offset_left = 0.177998
-offset_top = -0.0930023
-offset_right = 336.178
-offset_bottom = 220.907
+offset_left = 39.0
+offset_top = 233.0
+offset_right = 375.0
+offset_bottom = 454.0
+
+[node name="JobList" type="GridContainer" parent="JobListUI/JobListContainer/ScrollContainer"]
+layout_mode = 2
 script = ExtResource("7_82qna")
 
 [node name="HUD" type="CanvasLayer" parent="."]
