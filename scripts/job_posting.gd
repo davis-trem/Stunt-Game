@@ -13,6 +13,10 @@ const QTE_TYPE_TO_SCENE = {
 
 var job_idx
 var qte_type: QTEManager.TYPE
+var qte_difficulty: QTEManager.DIFFICULTY
+var required_skills
+var injury_risk_level
+var injury_risk_areas
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,5 +53,9 @@ func _gui_input(event):
 	if  event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var scene = QTE_TYPE_TO_SCENE[qte_type].instantiate()
 		scene.job_idx = job_idx
+		scene.qte_difficulty = qte_difficulty
+		scene.required_skills = required_skills
+		scene.injury_risk_level = injury_risk_level
+		scene.injury_risk_areas = injury_risk_areas
 		GameState.scene_swapper(scene)
 		

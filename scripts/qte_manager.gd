@@ -9,7 +9,18 @@ enum TYPE {
 	BALANCE,
 }
 
+enum DIFFICULTY {
+	EASY = 6,
+	MEDIUM = 8,
+	HARD = 10,
+}
+
 @export var qte_type: TYPE
+@export var qte_difficulty: DIFFICULTY
+
+var required_skills
+var injury_risk_level
+var injury_risk_areas
 var qte_buttons = []
 var action_names = []
 var wait_times = {
@@ -146,7 +157,12 @@ func _handle_event_ended_dialog_retry_button_pressed():
 
 
 func _handle_event_ended_dialog_quit_button_pressed():
-	GameState.player_stats.money += GameState.job_list[job_idx]["payout"]
+	var did_succeed = _calculate_if_success()
+	var potential_injured_body_part = _apply_protential_injury()
+	if potential_injured_body_part != null:
+		pass # TODO: Show user what's injured
+	if did_succeed:
+		GameState.player_stats.money += GameState.job_list[job_idx]["payout"]
 	GameState.proceedToNextRound()
 	var scene = preload("res://scenes/bedroom.tscn").instantiate()
 	GameState.scene_swapper(scene)
@@ -171,3 +187,28 @@ func _get_action_button_text(action_name: String) -> String:
 	var input_events = InputMap.action_get_events(action_name)
 	# TODO: get input event by OS
 	return input_events[0].as_text().split(' ')[0]
+
+
+func _calculate_if_success() -> bool:
+	var skill_check = 1
+	for required_skill in required_skills:
+		if GameState.get_player_skill(required_skill['type']) < required_skill['value']:
+			skill_check = -2
+			break
+	
+	var qte_score = 6 # TODO: Determine score for qte
+	
+	var chance = randi_range(1, 4) + skill_check + qte_score
+	return chance > qte_difficulty
+
+
+func _apply_protential_injury():
+	var is_injured = randi_range(1, 2) == 1
+	if is_injured:
+		var body_type = injury_risk_areas[randi() % injury_risk_areas.size()]
+		GameState.set_player_body_health(
+			body_type,
+			GameState.get_player_body_health(body_type) - injury_risk_level
+		)
+		return body_type
+	return null

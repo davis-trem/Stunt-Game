@@ -12,6 +12,10 @@ func _ready():
 		instance.name = "jobposting_" + str(i)
 		instance.job_idx = i
 		instance.qte_type = job["qte_type"]
+		instance.qte_difficulty = job["qte_difficulty"]
+		instance.required_skills = job["required_skills"]
+		instance.injury_risk_level = job["injury_risk_level"]
+		instance.injury_risk_areas = job["injury_risk_areas"]
 		add_child(instance)
 
 
