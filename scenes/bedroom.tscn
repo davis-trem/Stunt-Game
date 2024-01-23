@@ -1,18 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsy4qpe84qra6"]
+[gd_scene load_steps=5 format=3 uid="uid://dsy4qpe84qra6"]
 
 [ext_resource type="Script" path="res://scripts/bedroom.gd" id="1_pdonb"]
 [ext_resource type="Texture2D" uid="uid://cx0bse1msnw7i" path="res://backgrounds/bedroom.png" id="2_im66e"]
-[ext_resource type="Texture2D" uid="uid://bnvbncn50e7bu" path="res://items/skeleton.png" id="3_r2i0l"]
-[ext_resource type="Script" path="res://scripts/JobBoard.gd" id="4_8w15w"]
-[ext_resource type="Script" path="res://scripts/JobCollision.gd" id="5_23deo"]
 [ext_resource type="Texture2D" uid="uid://cy2yqy6m3r4en" path="res://items/JobList.png" id="6_mxkxy"]
 [ext_resource type="Script" path="res://scripts/JobList.gd" id="7_82qna"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y453k"]
-size = Vector2(61, 131)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi567"]
-size = Vector2(89, 152)
 
 [node name="Bedroom" type="Node"]
 script = ExtResource("1_pdonb")
@@ -25,39 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_im66e")
 
-[node name="CheckHealth" type="Area2D" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CheckHealth"]
-layout_direction = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 156.0
-offset_top = 144.0
-offset_right = 214.0
-offset_bottom = 275.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r2i0l")
-expand_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHealth"]
-position = Vector2(185.5, 210.5)
-shape = SubResource("RectangleShape2D_y453k")
-
-[node name="JobBoard" type="Area2D" parent="."]
-disable_mode = 2
-script = ExtResource("4_8w15w")
-
-[node name="JobCollision" type="CollisionShape2D" parent="JobBoard"]
-position = Vector2(518.5, 225)
-shape = SubResource("RectangleShape2D_xi567")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-script = ExtResource("5_23deo")
-
-[node name="JobListUI" type="Node" parent="."]
-
-[node name="JobListContainer" type="TextureRect" parent="JobListUI"]
+[node name="JobListContainer" type="TextureRect" parent="."]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -72,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_mxkxy")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="JobListUI/JobListContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="JobListContainer"]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 39.0
@@ -80,23 +39,27 @@ offset_top = 233.0
 offset_right = 375.0
 offset_bottom = 454.0
 
-[node name="JobList" type="GridContainer" parent="JobListUI/JobListContainer/ScrollContainer"]
+[node name="JobList" type="GridContainer" parent="JobListContainer/ScrollContainer"]
 layout_mode = 2
 script = ExtResource("7_82qna")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="MoneyAmount" type="Label" parent="HUD"]
+[node name="MoneyAmount" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.021
 anchor_top = 0.04
 anchor_right = 0.021
 anchor_bottom = 0.04
-offset_left = -0.120001
+offset_left = -0.120003
 offset_top = -0.200001
 offset_right = 141.88
 offset_bottom = 33.8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Money: $0"
 
-[connection signal="input_event" from="JobBoard" to="JobBoard" method="_on_input_event"]
+[node name="DisplayJobButton" type="TextureButton" parent="."]
+offset_left = 1267.0
+offset_top = 380.0
+offset_right = 1485.0
+offset_bottom = 634.0
+
+[connection signal="pressed" from="DisplayJobButton" to="." method="_on_display_job_button_pressed"]
