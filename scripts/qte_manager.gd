@@ -1,6 +1,8 @@
 class_name QTEManager
 extends Control
 
+const injury_updates_scene = preload('res://scenes/injury_updates.tscn')
+
 enum TYPE {
 	MASHING,
 	QUICK_PRESS,
@@ -159,13 +161,13 @@ func _handle_event_ended_dialog_retry_button_pressed():
 func _handle_event_ended_dialog_quit_button_pressed():
 	var did_succeed = _calculate_if_success()
 	var potential_injured_body_part = _apply_protential_injury()
-	if potential_injured_body_part != null:
-		pass # TODO: Show user what's injured
 	if did_succeed:
 		GameState.player_stats.money += GameState.job_list[job_idx]["payout"]
-	GameState.proceedToNextRound()
-	var scene = preload("res://scenes/bedroom.tscn").instantiate()
-	GameState.scene_swapper(scene)
+	
+	var injury_updates = injury_updates_scene.instantiate()
+	injury_updates.injured_body_part = potential_injured_body_part
+	injury_updates.injury_risk_level = injury_risk_level
+	add_child(injury_updates)
 
 
 func _handle_timer_timeout():

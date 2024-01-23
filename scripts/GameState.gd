@@ -25,9 +25,9 @@ enum BODY_TYPE {
 }
 
 enum RISK_LEVEL {
-	LOW = 1,
-	MEDIUM = 2,
-	HIGH = 3,
+	LOW = 5,
+	MEDIUM = 10,
+	HIGH = 20,
 }
 
 var job_list = [
@@ -331,6 +331,7 @@ func get_player_skill(type: SKILL_TYPE):
 
 
 func set_player_skill(type: SKILL_TYPE, value: int):
+	value = clampi(value, 1, 10)
 	match type:
 		SKILL_TYPE.COMBAT:
 			player_stats.combat = value
@@ -359,6 +360,7 @@ func get_player_body_health(body_part: BODY_TYPE):
 
 
 func set_player_body_health(body_part: BODY_TYPE, value: int):
+	value = clampi(value, 0, 100)
 	match body_part:
 		BODY_TYPE.ARM:
 			player_stats.arm_health = value

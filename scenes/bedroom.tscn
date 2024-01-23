@@ -54,6 +54,7 @@ offset_top = -0.200001
 offset_right = 141.88
 offset_bottom = 33.8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
 text = "Money: $0"
 
 [node name="DisplayJobButton" type="TextureButton" parent="."]
@@ -61,5 +62,180 @@ offset_left = 1267.0
 offset_top = 380.0
 offset_right = 1485.0
 offset_bottom = 634.0
+
+[node name="Stats" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(500, 700)
+offset_left = 94.0
+offset_top = 198.0
+offset_right = 594.0
+offset_bottom = 898.0
+color = Color(1, 0.941176, 0.776471, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Health"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Head"
+
+[node name="HeadProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Label2" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Arms"
+
+[node name="ArmProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Label3" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Torso"
+
+[node name="TorsoProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Label4" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[node name="BackProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Label5" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Legs"
+
+[node name="LegProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Label2" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Talents"
+horizontal_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Combat"
+
+[node name="CombatProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Endurance"
+
+[node name="EnduranceProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Label3" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Animal Handling"
+
+[node name="AnimalHandlingProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Label4" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Acrobatics"
+
+[node name="AcrobaticsProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Label5" type="Label" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Driving"
+
+[node name="DrivingProgressBar" type="ProgressBar" parent="Stats/MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+value = 1.0
+show_percentage = false
 
 [connection signal="pressed" from="DisplayJobButton" to="." method="_on_display_job_button_pressed"]
